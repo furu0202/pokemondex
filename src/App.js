@@ -4,7 +4,7 @@ import Card from "./components/card/card";
 import Navbar from "./components/Navbar/Navbar";
 import { getAllPokemon, getPokemon } from "./utils/pokemon.js";
 
-function App() {
+const App = () => {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
   const [loading, setLoading] = useState(true);
   const [pokemonData, setPokemonData] = useState([]);
@@ -19,7 +19,7 @@ function App() {
       loadPokemon(res.results);
       // console.log(res.next);
       setNextURL(res.next);
-      setNextURL(res.previos); //null
+      setPrevURL(res.previous); //null
       setLoading(false);
     };
     fetchPokemonData();
@@ -44,7 +44,7 @@ function App() {
     // console.log(data);
     await loadPokemon(data.results);
     setNextURL(data.next);
-    setPrevURL(data.previos);
+    setPrevURL(data.previous);
     setLoading(false);
   };
 
@@ -55,7 +55,7 @@ function App() {
     let data = await getAllPokemon(prevURL);
     await loadPokemon(data.results);
     setNextURL(data.next);
-    setPrevURL(data.previos);
+    setPrevURL(data.previous);
     setLoading(false);
   };
 
@@ -81,6 +81,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export default App;

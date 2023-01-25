@@ -12,7 +12,7 @@ const card = ({ pokemon }) => {
         <div>タイプ</div>
         {pokemon.types.map((type) => {
           return (
-            <div>
+            <div key={type.type.name}>
               <span className="typeName">{type.type.name}</span>
             </div>
           );
