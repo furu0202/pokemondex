@@ -17,7 +17,6 @@ const App = () => {
       let res = await getAllPokemon(initialURL);
       // 各ポケモンの繊細なデータを取得
       loadPokemon(res.results);
-      // console.log(res.next);
       setNextURL(res.next);
       setPrevURL(res.previous); //null
       setLoading(false);
@@ -28,7 +27,6 @@ const App = () => {
   const loadPokemon = async (data) => {
     let _pokemonData = await Promise.all(
       data.map((pokemon) => {
-        // console.log(pokemon);
         let pokemonRecord = getPokemon(pokemon.url);
         return pokemonRecord;
       })
@@ -36,12 +34,9 @@ const App = () => {
     setPokemonData(_pokemonData);
   };
 
-  // console.log(pokemonData);
-
   const handleNextPage = async () => {
     setLoading(true);
     let data = await getAllPokemon(nextURL);
-    // console.log(data);
     await loadPokemon(data.results);
     setNextURL(data.next);
     setPrevURL(data.previous);
